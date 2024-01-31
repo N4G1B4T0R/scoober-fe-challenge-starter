@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Layout } from 'entities/Layout';
+import { RouterProvider } from 'react-router-dom';
+import { routers } from 'app-config/app-routes';
+import { UserMessage } from 'features/user-message';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <Layout>
+      <RouterProvider router={routers} />
+      <UserMessage />
+    </Layout>
+  </div>
+);
 
 export default App;
