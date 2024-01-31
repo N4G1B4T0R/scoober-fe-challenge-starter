@@ -2,4 +2,3 @@ export { getSelectedRoomNameSelector, getIsRoomReadySelector } from './model/sel
 export { roomsApi } from './model/api';
 
 export { RoomList } from './rooms';
-

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Room } from './ui/room';
 import { useGetRoomsQuery } from './model/api';
-import { IRoom } from "./model/interfaces";
+import { IRoom } from './model/interfaces';
 
 const RoomList = () => {
   const { data: roomList } = useGetRoomsQuery();

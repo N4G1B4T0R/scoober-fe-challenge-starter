@@ -2,12 +2,19 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-export const Text = styled('p')({
-  fontSize: 41,
-  fontWeight: 700,
-  lineHeight: '52px',
-  color: 'white'
-});
+export const Text = styled('p')((props) => ({
+  color: 'white',
+  [props.theme.breakpoints.up('xs')]: {
+    fontSize: 16,
+    fontWeight: 700,
+    lineHeight: '16px'
+  },
+  [props.theme.breakpoints.up('md')]: {
+    fontSize: 41,
+    fontWeight: 700,
+    lineHeight: '52px'
+  }
+}));
 
 export const StyledButton = styled(Button)({
   background: 'white',

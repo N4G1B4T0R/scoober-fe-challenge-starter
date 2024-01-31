@@ -24,7 +24,7 @@ const Room: FC<IRoom> = (props) => {
 
   return (
     <Paper onClick={_onCLick}>
-      <StyledBox selected={isSelected}>
+      <StyledBox selected={isSelected} width={{ xs: 'auto', md: '192px' }}>
         <Typography variant="body1">{props.name}</Typography>
         <img src={isSelected ? ArrowWhite : ArrowBlue} alt="arrow" />
       </StyledBox>

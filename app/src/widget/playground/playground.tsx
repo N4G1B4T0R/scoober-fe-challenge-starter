@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getIsRoomReadySelector,
-  getSelectedRoomNameSelector
-} from 'features/rooms';
+import { getIsRoomReadySelector, getSelectedRoomNameSelector } from 'features/rooms';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

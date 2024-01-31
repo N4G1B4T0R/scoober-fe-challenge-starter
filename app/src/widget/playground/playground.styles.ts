@@ -1,13 +1,19 @@
 import { styled } from '@mui/material/styles';
 
-export const StyledBox = styled('div')(({ isGameFinished }: { isGameFinished?: boolean }) => {
+export const StyledBox = styled('div')<{ isGameFinished?: boolean }>((props) => {
   return {
     display: 'flex',
     backgroundColor: 'white',
-    width: '100%',
-    height: 'calc(100vh - 154px)',
-    overflowY: isGameFinished ? 'clip' : 'auto',
+    overflowY: props?.isGameFinished ? 'clip' : 'auto',
     padding: '24px 8px',
-    position: 'relative'
+    position: 'relative',
+    [props.theme.breakpoints.up('xs')]: {
+      width: 'auto',
+      height: 'calc(100vh - 384px)'
+    },
+    [props.theme.breakpoints.up('md')]: {
+      width: '100%',
+      height: 'calc(100vh - 154px)'
+    }
   };
 });

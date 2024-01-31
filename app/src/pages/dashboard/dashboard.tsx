@@ -6,8 +6,8 @@ import Box from '@mui/material/Box';
 
 const Dashboard = () => {
   return (
-    <Grid container flexWrap="nowrap">
-      <Box mr={3}>
+    <Grid container flexWrap="nowrap" flexDirection={{ xs: 'column', md: 'row' }}>
+      <Box mr={{ xs: 0, md: 3 }}>
         <RoomList />
       </Box>
       <Playground />
