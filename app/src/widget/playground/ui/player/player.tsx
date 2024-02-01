@@ -48,13 +48,14 @@ const Player: FC<IProps> = memo((props) => {
   return (
     <Box mt={2}>
       <Grid container flexDirection={flexDirection}>
-        <Grid container item xs={2} justifyContent={contentPosition}>
+        <Grid container item xs={2} md={1} justifyContent={contentPosition}>
           <Avatar alt="Logo" src={logo} />
         </Grid>
         <Grid
           container
           item
           xs={10}
+          md={11}
           flexDirection="column"
           alignItems={contentPosition}
           alignContent={contentPosition}>
