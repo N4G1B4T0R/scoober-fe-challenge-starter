@@ -10,7 +10,7 @@ import {
   SendNumberAction,
   StartGameAction
 } from './interfaces';
-import { saveMessage, saveNumber, saveResult, saveStatus } from './slice';
+import { saveMessage, saveResult, saveStatus } from './slice';
 import { EventChannel } from 'redux-saga';
 
 const getLastResult = (state: RootState) =>
@@ -21,13 +21,6 @@ const getMessageList = (state: RootState) => state.playground.messageList;
 
 export function* initGame({ socket }: IAdditionalSagaParams) {
   socket.letsPlay();
-
-  const randomNumberChannel: EventChannel<string> = yield call(
-    socket.createEventChannel,
-    'randomNumber'
-  );
-  const messageResponse: RandomNumberResponse = yield take(randomNumberChannel);
-  yield put(saveNumber(messageResponse.number));
 }
 
 export function* sendNumber(action: SendNumberAction, { socket }: IAdditionalSagaParams) {
@@ -53,14 +46,23 @@ export function* listeningChanges({ socket }: IAdditionalSagaParams) {
 
   while (!isGameOver) {
     const messageList: IMessage[] = yield select(getMessageList);
-
     const messageResponse: RandomNumberResponse = yield take(randomNumberChannel);
 
-    if (messageList.length) {
+    if (messageResponse.isFirst) {
+      yield put(
+        saveMessage({
+          ...messageResponse,
+          number: +messageResponse.number,
+          result: +messageResponse.number,
+        })
+      );
+    }
+
+    if (messageList.length && !messageResponse.isFirst) {
       const prevResult = messageList[messageList.length - 1];
 
       const result = messageResponse.isCorrectResult
-        ? messageResponse.number
+        ? +messageResponse.number
         : (messageResponse.selectedNumber + messageResponse.number) / 3;
 
       yield put(
@@ -71,8 +73,6 @@ export function* listeningChanges({ socket }: IAdditionalSagaParams) {
           format: `[(${messageResponse.selectedNumber} + ${prevResult.result}) / 3] = ${result.toFixed(2)}`
         })
       );
-    } else {
-      yield put(saveMessage({ ...messageResponse, result: +messageResponse.number }));
     }
 
     if (!messageResponse.isFirst) {
@@ -93,6 +93,9 @@ export function* listeningChanges({ socket }: IAdditionalSagaParams) {
       yield put(saveResult(messageResponse.user === username));
     }
   }
+
+  randomNumberChannel.close();
+  activateYourTurnChannel.close();
 }
 
 export function* watchAllPlaygrounds(params: IAdditionalSagaParams) {

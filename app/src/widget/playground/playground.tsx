@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsRoomReadySelector, getSelectedRoomNameSelector } from 'features/rooms';
 import Typography from '@mui/material/Typography';
@@ -22,12 +22,11 @@ const Playground = () => {
   const dispatch = useDispatch();
   const selectedRoom = useSelector(getSelectedRoomNameSelector);
   const isRoomReady = useSelector(getIsRoomReadySelector);
-  const randomNumber = useSelector(getNumberSelector);
   const isWaiting = useSelector(isTurnWaitingSelector);
   const isGameFinished = useSelector(getIsGameFinishedSelector);
   const isWinning = useSelector(getIsWinningSelector);
   const list = useSelector(getMessageListSelector);
-
+  const boxRef = useRef<HTMLDivElement>(null);
   const _initGame = () => {
     dispatch(startGame());
   };
@@ -41,7 +40,14 @@ const Playground = () => {
     if (isRoomReady) {
       dispatch(listeningGame());
     }
-  }, [isRoomReady, dispatch, selectedRoom]);
+  }, [isRoomReady]);
+
+  useEffect(
+    () => {
+      boxRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    },
+    [list.length]
+  );
 
   if (!selectedRoom) {
     return (
@@ -67,7 +73,7 @@ const Playground = () => {
     );
   }
 
-  if (!randomNumber) {
+  if (!list.length) {
     return (
       <StyledBox>
         <Box width="100%">
@@ -109,7 +115,7 @@ const Playground = () => {
           <Player isWaiting={isWaiting} />
         </AppFallback>
 
-        <Grid container justifyContent="center">
+        <Grid container justifyContent="center" ref={boxRef}>
           <ButtonGroup disabled={isWaiting} />
         </Grid>
       </Box>

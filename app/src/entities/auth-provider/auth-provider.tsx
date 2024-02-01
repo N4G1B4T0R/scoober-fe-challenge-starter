@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { getUsernameSelector } from 'shared/services/auth/selector';
 export const AuthLayout = () => {
   const username = useSelector(getUsernameSelector);
-  console.log(username);
 
   if (!username) {
     return <Navigate to="/auth" replace />;

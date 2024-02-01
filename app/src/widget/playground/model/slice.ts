@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameStatus, PlaygroundState } from './interfaces';
 
 const initialState: PlaygroundState = {
-  randomNumber: 0,
   isWinning: false,
   isGameFinished: false,
   status: GameStatus.play,
@@ -14,9 +13,6 @@ const playgroundSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    saveNumber: (state, action: PayloadAction<number>) => {
-      state.randomNumber = action.payload;
-    },
     saveMessage: (state, action) => {
       state.messageList.push(action.payload);
     },
@@ -32,6 +28,6 @@ const playgroundSlice = createSlice({
   }
 });
 
-export const { saveNumber, resetGame, saveResult, saveMessage, saveStatus } =
+export const { resetGame, saveResult, saveMessage, saveStatus } =
   playgroundSlice.actions;
 export default playgroundSlice.reducer;

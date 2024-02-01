@@ -19,6 +19,7 @@ export const getMessageListSelector: Selector<RootState, IMessage[]> = createSel
 
     if (list.length === 1) {
       const [firstMessage] = list;
+      console.log(firstMessage, 'firstMessage');
       return [
         {
           number: firstMessage.number,

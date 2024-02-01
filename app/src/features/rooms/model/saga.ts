@@ -16,15 +16,15 @@ export function* selectTheRoom({ payload }: { payload: IRoom }, { socket }: IAdd
   const messageChannel: EventChannel<string> = yield call(socket.createEventChannel, 'message');
   const onReadyChannel: EventChannel<string> = yield call(socket.createEventChannel, 'onReady');
 
-  while (true) {
-    const messageResponse: SelectRoomResponse = yield take(messageChannel);
+  const messageResponse: SelectRoomResponse = yield take(messageChannel);
 
-    if (messageResponse) {
-      yield put(saveRoom(payload));
-    }
-    const { state } = yield take(onReadyChannel);
-    yield put(saveIsRoomReady(state));
+  if (messageResponse) {
+    yield put(saveRoom(payload));
   }
+  const { state } = yield take(onReadyChannel);
+  yield put(saveIsRoomReady(state));
+  messageChannel.close();
+  onReadyChannel.close();
 }
 
 export function* watchAllRooms(params: IAdditionalSagaParams) {

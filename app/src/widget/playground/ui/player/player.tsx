@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import Grid from '@mui/material/Grid';
 import BotLogo from 'shared/assets/logo.svg';
 import PlayerLogo from 'shared/assets/player.svg';
@@ -13,7 +13,7 @@ interface IProps extends IMessage {
   isWaiting?: boolean;
 }
 
-const Player: FC<IProps> = (props) => {
+const Player: FC<IProps> = memo((props) => {
   const { isCurrentUser, format, selectedNumber, result, isWaiting } = props;
 
   const flexDirection = isCurrentUser ? 'row-reverse' : 'row';
@@ -65,6 +65,6 @@ const Player: FC<IProps> = (props) => {
       </Grid>
     </Box>
   );
-};
+});
 
 export { Player };

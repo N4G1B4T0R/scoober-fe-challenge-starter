@@ -24,7 +24,6 @@ export interface PlaygroundState {
   status: GameStatus;
   isGameFinished: boolean;
   isWinning: boolean;
-  randomNumber: number;
   messageList: IMessage[];
 }
 

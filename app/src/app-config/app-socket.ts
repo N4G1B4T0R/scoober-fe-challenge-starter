@@ -14,7 +14,7 @@ class SocketHandler implements ISocketHandler {
 
   setupSocketEvents() {
     this.socket.on('connect', () => {
-      console.log('Connected to Socket.IO');
+      console.info('Connected to Socket.IO');
     });
 
     this.socket.on('connect_error', (error: string) => {
@@ -22,7 +22,7 @@ class SocketHandler implements ISocketHandler {
     });
 
     this.socket.on('disconnect', (reason: string) => {
-      console.log('Disconnected from Socket.IO:', reason);
+      console.info('Disconnected from Socket.IO:', reason);
     });
   }
   disconnect() {
@@ -73,6 +73,7 @@ class SocketHandler implements ISocketHandler {
       });
       return () => {
         this.socket.off(eventName);
+        this.logEvent(eventName, 'closed');
       };
     });
   };

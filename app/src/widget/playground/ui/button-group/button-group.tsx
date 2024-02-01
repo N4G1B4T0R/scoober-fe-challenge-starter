@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { CircleButton } from './button-group.styles';
 import Box from '@mui/material/Box';
 import { useDispatch } from 'react-redux';
@@ -8,7 +8,7 @@ interface IProps {
   disabled?: boolean;
 }
 
-const ButtonGroup: FC<IProps> = ({ disabled }) => {
+const ButtonGroup: FC<IProps> = memo(({ disabled }) => {
   const dispatch = useDispatch();
 
   return (
@@ -24,6 +24,6 @@ const ButtonGroup: FC<IProps> = ({ disabled }) => {
       </CircleButton>
     </Box>
   );
-};
+});
 
 export { ButtonGroup };

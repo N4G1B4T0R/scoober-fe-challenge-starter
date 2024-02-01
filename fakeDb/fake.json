@@ -19,5 +19,12 @@
       "type": "human"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": "cD50ZvBMN1QW3RlPAABi",
+      "name": "asxasx",
+      "room": "Room Berlin CPU",
+      "roomType": "cpu"
+    }
+  ]
 }
