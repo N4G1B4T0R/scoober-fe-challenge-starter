@@ -11,7 +11,6 @@ import {
   getIsGameFinishedSelector,
   getIsWinningSelector,
   getMessageListSelector,
-  getNumberSelector,
   isTurnWaitingSelector
 } from './model/selector';
 import Grid from '@mui/material/Grid';
