@@ -18,7 +18,7 @@ class SocketHandler implements ISocketHandler {
     });
 
     this.socket.on('connect_error', (error: string) => {
-      console.error('Socket.IO connection error:', error);
+      console.info('Socket.IO connection error:', error);
     });
 
     this.socket.on('disconnect', (reason: string) => {

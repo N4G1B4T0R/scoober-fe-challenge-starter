@@ -53,24 +53,25 @@ export function* listeningChanges({ socket }: IAdditionalSagaParams) {
         saveMessage({
           ...messageResponse,
           number: +messageResponse.number,
-          result: +messageResponse.number,
+          result: +messageResponse.number
         })
       );
     }
 
     if (messageList.length && !messageResponse.isFirst) {
       const prevResult = messageList[messageList.length - 1];
-
       const result = messageResponse.isCorrectResult
         ? +messageResponse.number
-        : (messageResponse.selectedNumber + messageResponse.number) / 3;
+        : ((messageResponse.selectedNumber + messageResponse.number) / 3).toFixed(2);
+
+      const format = `[(${messageResponse.selectedNumber} + ${prevResult.result}) / 3] = ${result}`;
 
       yield put(
         saveMessage({
           isCurrentUser: messageResponse.user === username,
           result: messageResponse.number,
           selectedNumber: messageResponse.selectedNumber,
-          format: `[(${messageResponse.selectedNumber} + ${prevResult.result}) / 3] = ${result.toFixed(2)}`
+          format
         })
       );
     }
