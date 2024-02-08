@@ -1,6 +1,3 @@
-import { types } from './types';
-import { IGeneralAction } from 'shared/types';
-
 export enum UserMessageStatus {
   error = 'error',
   success = 'success'
@@ -15,5 +12,3 @@ export interface UserMessageState {
   data: UserMessageProps;
   isOpenUserMessage: boolean;
 }
-
-export type OpenUserMessageAction = IGeneralAction<types.OPEN_USER_MESSAGE, UserMessageProps>;

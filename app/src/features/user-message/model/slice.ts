@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { UserMessageProps, UserMessageState, UserMessageStatus } from './interfaces';
 
 const initialState: UserMessageState = {

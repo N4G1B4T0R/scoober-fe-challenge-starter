@@ -21,7 +21,7 @@ const UserMessage = () => {
         onClose={_close}>
         <Alert
           onClose={_close}
-          severity={data.status || 'error'}
+          severity={data.status}
           variant="filled"
           sx={{ width: '100%' }}>
           {data.message}
