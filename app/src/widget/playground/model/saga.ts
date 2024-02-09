@@ -19,6 +19,7 @@ const getLastResult = (state: RootState) =>
 const getUserInfo = (state: RootState) => state.auth.userInfo;
 const getMessageList = (state: RootState) => state.playground.messageList;
 
+// eslint-disable-next-line require-yield
 export function* initGame({ socket }: IAdditionalSagaParams) {
   // eslint-disable-next-line require-yield
   socket.letsPlay();
