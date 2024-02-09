@@ -39,7 +39,7 @@ const Playground = () => {
     if (isRoomReady) {
       dispatch(listeningGame());
     }
-  }, [isRoomReady]);
+  }, [isRoomReady, dispatch]);
 
   useEffect(
     () => {
